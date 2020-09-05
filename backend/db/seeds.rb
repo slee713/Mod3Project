@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
+User.destroy_all
+Score.destroy_all
+
+10.times do 
+    User.create(username: Faker::Name.unique.first_name)
+end
+
+User.all.each do |user| 
+    rand(1...4).times do 
+        Score.create(user: user, value: rand(1...50))
+    end
+end
